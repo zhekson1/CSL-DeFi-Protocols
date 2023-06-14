@@ -13,7 +13,7 @@ Current DeFi dApps have a number of drawbacks:
 
 2. Governance of these actors is a complex and nuanced topic: who decides who gets to be a batcher or oracle provider? How are they compensated? If the answers to these questions are DAOs and dApp tokens, respectively, doesn't this mean that over time, as the permissioned actors profit, they gain increasing control of the DAO, until they become their own overseers? Furthermore, since dApps currently **require** users to go through batchers, composability with other dApps must be implemented manually, which is outside of user control. Governance quickly gets messy, and may result in a variety of regulatory issues down the line. It should be minimized wherever possible.
 
-3. Current dApps charge relatively high fees because they need to compensate permissioned actors for their resources *and* incentivize liquidity via "dApp Token" yield farming. This raises concernces about long-term sustainability long-term, since Cardano already has
+3. Current dApps charge relatively high fees because they need to compensate permissioned actors for their resources *and* incentivize liquidity via "dApp Token" yield farming. This raises concerns about long-term sustainability, since Cardano already has thousands of nodes perfectly capable of executing complex DeFi logic. 
 
 4. Many DeFi dApps sacrifice full delegation control, especially in the case of liquidity pools. The more delegation control is decoupled from the ADA owners, the more distorted Ouroboros' game theory becomes. It is difficult to predict the extent of this distortion, so minimizing it is of paramount importance.
 
@@ -94,8 +94,6 @@ Currently, there are no options protocols on Cardano.
 ### [Cardano-Secondary-Market](https://github.com/fallen-icarus/cardano-secondary-market)
 A secondary p2p marketplace for buying/selling NFTs. Works in conjunction with Cardano-Loans and Cardano-Options for seamlessly creating a secondary market for bonds and options contracts.
 
-**{TALK ABOUT NEBULA?}**
-
 
 ## Future Directions
 CSL-DeFi Protocols have a ways to go before they are ready for mass adoption. Here are some roadmap items:
@@ -111,7 +109,7 @@ Currently, all CSL-DeFi protocols (except for Cardano-Swaps) are written in IOG'
 Similar improvements are expected for the other protocols.
 
 ### QA, Auditing, and Standardization
-CSL-DeFi protocols are more than the sum of their parts. They are not just standalone dApps, but are an ecosystem of protocols that explore a new design paradigm. Concepts like Beacon Tokens need to be fleshed out and standardized across the community, perhaps in the form of CIPs. Processes for agreeing on the location of UTxOs containing shared reference scripts must be established. At minimum, each protocol should undergo an external audit prior to wide adoption.
+CSL-DeFi protocols are more than the sum of their parts. They are not just standalone dApps, but are an ecosystem of protocols that explore a new design paradigm. Concepts like Beacon Tokens need to be fleshed out and standardized across the community, perhaps in the form of CIPs. Processes for agreeing on the authorship and location of UTxOs containing shared reference scripts must be established. [Here is a proposed solution.](https://github.com/fallen-icarus/cardano-reference-scripts) At minimum, each protocol should undergo an external audit prior to wide adoption.
 
 ### User Adoption
 CSL-DeFi protocols are purely p2p, so bootstrapping users and building liquidity may be challenging. However, there are some large key players that can help catalyze the process. Existing DEXes and lending/borrowing protocols with their own "dApp tokens" are especially interesting, since they may be able to offer additional profit-sharing rewards to token holders in a kind of "decentralized market maker" model. 
@@ -136,11 +134,12 @@ Due to the nature of this project, there is no straightforward way to profit fro
 
 Furthermore, this project creates a platform for others to build on. Traders, creditors/lenders, or more exotic entities like DAO-managed hedge funds can all use these protocols to profit for themselves and their investors.
 
-Since this project is not a typical VC project, here is an alternative funding plan:
-1. Development gets $100K to finish and pay for security audits.
-2. The remaining money that would normally be invested would be set aside by the VC specifically for bootstrapping the protocols.
+Since this project is not a typical VC project, here is an alternative funding plan, in order of importance:
 
-The VC can earn a return on its investment by participating in the protocols as lenders, arbitragers, etc.
+1. $20,000 first place grant goes directly to developers.
+2. Funding independent security audits for the protocols (approximately $10,000 each)
+3. Any additional funds could be invested in startups focusing on algorithmic trading and/or lending using these protocols.
+
 
 ---
 ## References
