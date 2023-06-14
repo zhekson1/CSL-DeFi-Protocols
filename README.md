@@ -116,7 +116,7 @@ CSL-DeFi protocols are more than the sum of their parts. They are not just stand
 CSL-DeFi protocols are purely p2p, so bootstrapping users and building liquidity may be challenging. However, there are some large key players that can help catalyze the process. Existing DEXes and lending/borrowing protocols with their own "dApp tokens" are especially interesting, since they may be able to offer additional profit-sharing rewards to token holders in a kind of "decentralized market maker" model. 
 
 ### Frontend Integrations
-All CSL-DeFi primtives employ a standardized JSON schema that allows for straightforward integration into existing frontends, like wallets and explorers. The UX/UI afforded by these integrations is essential from a usability perspective. Outreach to such providers is ongoing.
+All CSL-DeFi protocols employ a standardized JSON schema that allows for straightforward integration into existing frontends, like wallets and explorers. The UX/UI afforded by these integrations is essential from a usability perspective. Outreach to such providers is ongoing.
 
 ### Community Outreach
 The growth of CSL-DeFi protocols depends on community involvement. Collaboration on Github, Funding from Catalyst, or Twitter discussions are all great contribution vectors. Additional community resources like video demos, tutorials, and a website are being worked on.
