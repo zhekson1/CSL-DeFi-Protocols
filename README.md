@@ -1,4 +1,4 @@
-High level overview of p2p-DeFi Protocols for the CSL.
+High level overview of p2p-DeFi Protocols for the Cardano Settlement Layer.
 
 ## Table of Contents
 - [Introduction](#introduction)
