@@ -1,5 +1,16 @@
+High level overview of p2p-DeFi Protocols for the CSL.
+
+## Table of Contents
+- [Introduction](#introduction)
+- [Motivation](#motivation)
+- [The P2P DeFi Paradigm](#the-p2p-defi-paradigm)
+- [List of Protocols](#list-of-working-protocols)
+- [Future Directions](#future-directions)
+- [References](#references)
+
+
 ## Introduction
-CSL-DeFi Protocols seek to establish the basic building blocks of p2p finance on Cardano. It is a family of open "smart contract" protocols that share common design patterns, chiefly centered around radical permissionlessness, simplicity, and interoperability. By taking full advantage of the protocol architectures enabled by the eUTxO paradigm, CSL-DeFi protocols can achieve an unprecedented level of scale, with both high security *and* high availability guarantees. The protocols work synergistically with one another, enabling the formation of a truly independent and complex economy on Cardano. 
+P2P-DeFi Protocols seek to establish the basic building blocks of p2p finance on Cardano. It is a family of open Plutus protocols that share common design patterns, chiefly centered around radical permissionlessness, simplicity, and composability. By taking full advantage of the protocol architectures enabled by the eUTxO paradigm, p2p-DeFi protocols can achieve an unprecedented level of scale, with both high security *and* high availability guarantees. The protocols work synergistically with one another, enabling the formation of a truly independent and complex economy on Cardano. 
 
 
 ## Motivation
@@ -25,26 +36,30 @@ These considerations are glaringly similar to the blockchain trilemma; **securit
 
 1. **Radical Permissionlessness** - there are no permissioned or specially provisioned actors. All protocol participants, including large market-makers/batchers, are treated equally and permissionlessly. The only way to profit is to make profitable trades.
 
-2. **Minimum Viable Expressiveness** - protocols are simple, predictable, and are never subject to external off-chain variables, such as fiat-denominated prices. Due to their simplicity, they offer up to an order of magnitude lower fees than existing DeFi dApps, and do not require superfluous dApp Tokens.
+2. **Minimum Viable Expressiveness** - protocols are simple, predictable, and are never subject to external off-chain variables, such as fiat-denominated prices. Due to their simplicity, they offer up to an order of magnitude lower fees than existing DeFi dApps, do not require superfluous dApp Tokens, and are *highly* composable.
 
 3. **Proportional P2P Scaling** - total throughput/liquidity scales in proportion to the number of users. The more users there are, the deeper the liquidity, the higher the throughput.
 
+> **Note**
+> p2p-DeFi protocols are similar to Hydra, in that they are ledger-wide, Plutus-enabled extensions of the CSL, albeit with a focus on finance.
 
-CSL-DeFi protocols are similar to Hydra, in that they are ledger-wide, Plutus-enabled extensions of the CSL, albeit with a focus on finance.
 
-
-## A Fully P2P DeFi Paradigm
-Here are the design patterns shared by all CSL-DeFi protocols, and a discussion of their advantages over the status quo.
+## The P2P DeFi Paradigm
+Some of the design patterns shared by all p2p-DeFi protocols, and a discussion of their advantages over the status quo.
 
 ### Common Design Patterns 
 
-- **Unique User Addresses** - CSL-DeFi users deploy and interact with each others' script addresses. Each user creates at least one unique address, composed of *identical* payment credentials (mediated by a global reference script, per protocol), and *unique* user-mediated staking credentials. Owner-related actions (i.e. simple spending) are "overloaded" to the user's staking credential, so assets are never locked or stolen. Users always maintain full delegation authority over their addresses.
+- **Unique User Addresses** - p2p-DeFi users deploy and interact with each others' script addresses. Each user creates at least one unique address, composed of *identical* payment credentials (mediated by a global reference script, per protocol), and *unique* user-mediated staking credentials. Owner-related actions (i.e. simple withdrawal) are "overloaded" to the user's staking credential, so assets are never stolen. Users always maintain full delegation authority over their addresses.
 
-- **Beacon Tokens** - All CSL-DeFi protocols coordinate their spending policies with the minting policies of specialized NFTs, dubbed "Beacon Tokens". The tokens' functions include: mediating protocol logic, tagging TXs, UTxOs, and/or addresses for querying, and categorizing on-chain events. Beacon Tokens are highly generalizable, and can be very expressive when used in combination with each other. They are used extensively in all CSL-DeFi protocols. 
+- **Beacon Tokens** - All p2p-DeFi protocols coordinate their spending policies with the minting policies of specialized NFTs, dubbed "Beacon Tokens". These tokens serve two primary functions: 
+	1. Mediating protocol logic.
+	2. "Tagging" specific TXs, Addresses, or UTxOs, and categorizing them such that they stand out among a sea of on-chain data. 
 
-- **Permissionless Indexing** - All CSL-DeFi protocols have at least one Beacon Token that shares identical queryable properties with all other Beacon Tokens of the same protocol. As a result, users can locate relevant addresses and/or UTxOs using existing off-chain indexers, such as Blockfrost, Koios, local db-sync, e.t.c. No specialized indexers/routers necessary.
+	Beacon Tokens are highly generalizable, and can be very expressive when used in combination with each other. They are used extensively in all p2p-DeFi protocols. 
 
-- **No Oracles** - Protocols that rely on off-chain information feeds are subject to the integrity of the underlying oracle network. This raises many difficult questions about security, availability, governance, and greatly increases the attack surface. Instead, CSL-DeFi protocols forgo reliance on oracles, in favor of *endogenous* price discovery. 
+- **Permissionless Indexing** - All p2p-DeFi protocols have at least one Beacon Token that shares identical queryable properties with all other Beacon Tokens of the same protocol. As a result, users can locate relevant addresses and/or UTxOs using existing off-chain indexers, such as Blockfrost, Koios, local db-sync, e.t.c. No specialized indexers/routers necessary.
+
+- **No Oracles** - Protocols that rely on off-chain information feeds are subject to the integrity of the underlying oracle network. This raises many difficult questions about security, availability, governance, and greatly increases the attack surface. Instead, p2p-DeFi protocols forgo reliance on oracles, in favor of *endogenous* price discovery. 
 
 - **No Superfluous "dApp" Tokens** - protocols do not *require* any new fungible tokens. There is no yield farming, no "bootstrapping rewards", no specialized incentive structures. There are never any permissioned batchers, DAOs, or otherwise central entities. ADA is all that this is needed for minUTxO and TX fees. Instead, protocols align demand with market forces to incentivize participation.
 
@@ -52,16 +67,21 @@ Here are the design patterns shared by all CSL-DeFi protocols, and a discussion 
 ### Advantages of Fully P2P DeFi Protocols
 
 - **Full Custody** - users always maintain complete spending *and* delegation control over their assets. The only exception is when locking is required to enforce protocol logic, which restricts spending (but never restricts staking). 
+  
+- **Script Staking Credentials** - since owner-related actions of script addresses are overloaded to the staking credentials, users can secure their addresses either with a simple stake key or a more complex stake script (Native or Plutus). Users are empowered to secure their addresses via complex access control schemes.
+  
+  > **Note**
+  >  In the case of a simple stake key, a regular signature from the stake key will suffice. In the case of a script however, the staking script must be executed (i.e. withdraw 0 ADA from rewards) in the same TX. This means stake address registration is not necessary when using simple stake keys, but is necessary when using staking scripts.
 
 - **P2P Concurrency** - all user interactions are fully p2p and occur to and from each others' unique addresses, so there must be *at least* one UTxO for every user of the protocol. Throughput scales *with* the number of users.
 
 - **Frontend/Backend Agnosticism & Interoperability** - since all protocols are ultimately just on-chain minting and spending policies, they are frontend-agnostic. They can be integrated in a wide variety of frontends, such as light wallets, simple webpages, or fully custom stacks.
 
-- **Emergent Liquidity** - Instead of placing orders "against" specialized market-makers, liquidity aggregates naturally from high user volume. Over time, sophisticated traders using bespoke systems/algorithms will arise that become de-facto market makers.
+- **Emergent Liquidity** - Instead of placing orders "against" specialized market-makers, liquidity aggregates naturally from high user volume. Over time, sophisticated traders using bespoke systems/algorithms will arise, becoming de-facto market makers.
 
 - **Zero Slippage** - All assets are priced purely in relation to other on-chain assets. Slippage is impossible, since transaction validity depends only on exact fulfillment of individual users' terms, and no external variables.  
 
-- **Censorship Resistance** - thanks to frontend agnosticism, ultralow attack surface, and the atomized nature of user interactions, CSL-DeFi protocols offer the highest level of censorship resistance of any DeFi architecture. 
+- **Censorship Resistance** - thanks to frontend agnosticism, ultralow attack surface, and the atomized nature of user interactions, p2p-DeFi protocols offer the highest level of censorship resistance of any DeFi architecture. 
 
 - **Democratic Upgradability** - since addresses are unique, users choose if/when to use new contracts/protocols, at their own discretion. Doing so does not bifurcate liquidity, since the protocols are interoperable across versions. All users share the same global reference script(s), per protocol.
 
@@ -92,14 +112,17 @@ Currently, there are no options protocols on Cardano.
 
 
 ### [Cardano-Secondary-Market](https://github.com/fallen-icarus/cardano-secondary-market)
-A secondary p2p marketplace for buying/selling NFTs. Works in conjunction with Cardano-Loans and Cardano-Options for seamlessly creating a secondary market for bonds and options contracts.
+A secondary marketplace for buying/selling NFTs, fully p2p. Works in conjunction with Cardano-Loans and Cardano-Options for seamlessly creating an aftermarket for bonds and options contracts. [Here is an example](https://github.com/fallen-icarus/cardano-secondary-market#composability-with-other-defi-protocols) of the composability possible when using these protocols together. 
+
+> **Note**
+> Trade-able Loans/Bonds are still a WIP.
 
 
 ## Future Directions
-CSL-DeFi Protocols have a ways to go before they are ready for mass adoption. Here are some roadmap items:
+p2p-DeFi Protocols have a ways to go before they are ready for mass adoption. Here are some roadmap items:
 
 ### Aiken 
-Currently, all CSL-DeFi protocols (except for Cardano-Swaps) are written in IOG's PlutusTx language. Although this is a good choice for prototyping, auditing, and maintaining code, it is relatively resource-intensive. With current node parameters, some features are bottlenecked by script execution limits. Newer, more resource-efficient languages like Aiken offer more headroom for additional features and throughput. Aiken implementations for the protocols are currently being worked on. To express the promise of switching to Aiken, here are the before and after benchmarks for Cardano-Swaps:
+Currently, all p2p-DeFi protocols (except for Cardano-Swaps) are written in IOG's PlutusTx language. Although this is a good choice for prototyping, auditing, and maintaining code, it is relatively resource-intensive. With current node parameters, some features are bottlenecked by script execution limits. Newer, more resource-efficient languages like Aiken offer more headroom for additional features and throughput. Aiken implementations for the protocols are currently in development. To express the promise of switching to Aiken, here are the before and after benchmarks for Cardano-Swaps:
 
 | Language | Maximum Number of Swaps | Tx Fee |
 |--|--|--|
@@ -109,18 +132,16 @@ Currently, all CSL-DeFi protocols (except for Cardano-Swaps) are written in IOG'
 Similar improvements are expected for the other protocols.
 
 ### QA, Auditing, and Standardization
-CSL-DeFi protocols are more than the sum of their parts. They are not just standalone dApps, but are an ecosystem of protocols that explore a new design paradigm. Concepts like Beacon Tokens need to be fleshed out and standardized across the community, perhaps in the form of CIPs. Processes for agreeing on the authorship and location of UTxOs containing shared reference scripts must be established. [Here is a proposed solution.](https://github.com/fallen-icarus/cardano-reference-scripts) At minimum, each protocol should undergo an external audit prior to wide adoption.
+p2p-DeFi protocols are more than the sum of their parts. They are not just standalone dApps, but are an ecosystem of protocols that explore a new design paradigm. Concepts like Beacon Tokens need to be fleshed out and standardized across the community, perhaps in the form of CIPs. Processes for agreeing on the authorship and location of UTxOs containing shared reference scripts must be established. [Here is a proposed solution.](https://github.com/fallen-icarus/cardano-reference-scripts) At minimum, each protocol should undergo an external audit prior to wide adoption.
 
 ### User Adoption
-CSL-DeFi protocols are purely p2p, so bootstrapping users and building liquidity may be challenging. However, there are some large key players that can help catalyze the process. Existing DEXes and lending/borrowing protocols with their own "dApp tokens" are especially interesting, since they may be able to offer additional profit-sharing rewards to token holders in a kind of "decentralized market maker" model. 
+p2p-DeFi protocols are purely p2p, so bootstrapping users and building liquidity may be challenging. However, there are some large key players that can help catalyze the process. Existing DEXes and lending/borrowing protocols with their own "dApp tokens" are especially interesting, since they may be able to offer additional profit-sharing rewards to token holders in a kind of "decentralized market maker" model. 
 
 ### Frontend Integrations
-All CSL-DeFi protocols employ a standardized JSON schema that allows for straightforward integration into existing frontends, like wallets and explorers. The UX/UI afforded by these integrations is essential from a usability perspective. Outreach to such providers is ongoing.
+All p2p-DeFi protocols employ a standardized JSON schema that allows for straightforward integration into existing frontends, like wallets and explorers. The UX/UI afforded by these integrations is essential from a usability perspective. Outreach to such providers is ongoing.
 
 ### Community Outreach
-The growth of CSL-DeFi protocols depends on community involvement. Collaboration on Github, Funding from Catalyst, or Twitter discussions are all great contribution vectors. Additional community resources like video demos, tutorials, and a website are being worked on.
-
-**{LINKS TO STUFF}**
+The growth of p2p-DeFi protocols depends on community involvement. Collaboration on Github, Funding from Catalyst, or Twitter discussions are all great contribution vectors. Additional community resources like video demos, tutorials, and a website are being worked on.
 
 
 -------
@@ -130,7 +151,7 @@ The growth of CSL-DeFi protocols depends on community involvement. Collaboration
 
 For the judges' consideration:
 
-Due to the nature of this project, there is no straightforward way to profit from a VC perspective; there are no tokens, no equity, it is just a family of open protocols. However, it lays the foundation for *massively* increasing use and utility of the Cardano blockchain. All ADA holders (especially whales like Emurgo) stand to greatly benefit from increased value of Cardano as a whole.
+Due to the nature of this project, there is no straightforward way to profit from a VC perspective; there are no tokens, no equity, it is just a family of open protocols. However, it lays the foundation for greatly increasing *use and utility* of the Cardano blockchain. All ADA holders (especially whales like Emurgo) stand to profit from increased value of Cardano as a whole.
 
 Furthermore, this project creates a platform for others to build on. Traders, creditors/lenders, or more exotic entities like DAO-managed hedge funds can all use these protocols to profit for themselves and their investors.
 
