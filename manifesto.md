@@ -168,23 +168,24 @@ Astute readers will have noticed a pattern in the previous section; each subsect
 
 We've arrived at the crux of the matter: **DeFi protocols, in their current form, are overly siloed in scope.** Be it the enshrinement of oracles/batchers, or the concentration of liquidity into pooled form, DeFi users are locked into the entire on-and-off-chain stack of their preferred protocol(s). 
 
-
-
-### A Separation of Concerns
+---
+WIP
+### A Separation of Concerns (WIP)
 There's a reason why the internet seems like magic for regular users (and even some developers!). From compilers, to TCP/IP, to HTTPS, to the app; a huge number of standards sit at multiple layers between the machine and the app; expediting development while preserving interoperability. A useful analogy is that of a tree: its roots are to machine code what its leaves are to apps; standards give structure and rigidity to its trunk. This *separation of concerns* lets innovators and entrepreneurs shine, unburdened by the nitty-gritty details relegated to the low-level engineers. 
 
 Blockchains are a similar beast - as the technology matures, the number of possible applications (even within one vertical, like DeFi) explodes. Currently, every DeFi provider architects an entire stack, from smart contracts to the frontend, each of which is siloed and lacks interoperability with others. 
 
 
+
+
 Layers upon layers of protocols abstract away all the low-level nonsense from higher-level developers and end-users alike. 
-
-
 
 the distance between the on-chain backend and the end-user app widens, 
 
 What if instead of 
 
-### 5.3 On Throughput & Scalability (WIP)
+
+### On Throughput & Scalability (WIP)
 Cardano L1 is a "Nakamoto" style blockchain, meaning it formally prioritizes liveness over consistency. In other words, at any point in time all nodes are *not* expected to have the same view of the latest state, but are guaranteed to *eventually* converge on the same view. This imposes a fundamental "speed limit" on the network (even with future L1 scaling techniques like Input Endorsers). Consequently, although Cardano L1 *can* handle fully P2P DeFi, we cannot expect it to do so for billions of users simultaneously. So how do we get these protocols to scale? The answer lies in the kinds of "abstractions" and/or third-party services that can be built atop these protocols. To illustrate by analogy, lets examine the traditional financial system:
 
 At the highest level, there are domestic and international money transfers standards (i.e. FedWire and SWIFT, respectively). Individuals can send money directly using these standards (albeit through a bank intermediary), but this is relatively slow and expensive. There are alternative services that lower fees by batching transactions (i.e. ACH), or accelerate the process by taking on counterparty risk (i.e. CashApp, Venmo, credit cards, e.t.c.). None of these services are *strictly* necessary for any one individual to transfer money, but they enable a level of scale that the higher level protocols could not achieve on their own. 
@@ -193,6 +194,7 @@ Things seem to be playing out in a similar fashion for the cryptocurrency indust
 
 Cardano's eUTxO model is 
 
+----
 ## 5 - A Family of Protocols
 
 
@@ -226,31 +228,6 @@ P2P-DeFi protocols do not use oracles and do not artificially incentivize liquid
 Thanks to the previous principle of zero enshrinement, the core protocols inherit the same availability and permissionlessness guarantees as the underlying Cardano ledger. A variety of frontends from multiple hosts would ensure there is no single point of failure. Existing wallet providers are a great example of this, and are well-positioned to provide such services directly from their wallet interfaces.
 
 
-
-
-
-First, we have the current status quo; everything from bottom (i.e. simple cash transfer) to top (i.e. Fedwire or SWIFT settlement) is "centralized". You send money to a friend
-
-In the short to medium term, the vast majority of end-users don't know and don't care that blockchains are involved in their affairs. All they want is a great product that's better than yesterday's. 
-
-Companies 
-
-##### Optional, opt-in scaling techniques (batchers, hydra, zk, etc )
-
-Now, let's imagine a world where the "top" is decentralized (i.e. banks worldwide use Bitcoin as final settlement)
-
-
-Lets take SWIFT or Fedwire for example:
-
-Regardless of the "decentralization" of SWIFT or Fedwire, they're both used for final settlement of 
-
-
-Due to the protocols' permissionless, agnostic, 
-
-the chain will progress if some (or even many) nodes are faulty, but 
-
-
-
 #### Efficiency, Composability, and Interoperability
 Broadly speaking, scaling eUTxO-based protocols involves two considerations at the execution layer:
 1. Minimizing total on-chain resource utilization.
@@ -263,8 +240,6 @@ Critically, this is not just a "nice to have" speedup, but in some cases composa
 In Cardano-Loans, debt ownership is represented in the form of a "Bond" NFT that is associated with the "Active" UTxO of the corresponding borrower (the latter contains the loan state + collateral). The owner of the bond has the right to update the repayment address in the Active UTxO (the address to which the borrower must make their repayments). 
 
 Now, suppose a Bond is traded on Secondary-Market. The new owner of the bond should immediately update the borrower's "Active" UTxO with a new repayment address. However, if purchasing the bond and updating the repayment is done in two separate transactions, there is a risk that the borrower makes a loan repayment to the old bond owner in the interim. However, this is not an issue if the new bond owner can update the repayment address in the same transaction that they purchase the bond. 
-
-
 
 
 ## Future Directions & Considerations
@@ -288,10 +263,13 @@ User-friendly frontends are critical for adoption. Thanks to the fully open sour
 ### Minimal Governance
 P2P-DeFi protocols have no "utility token", and thus no "enshrined" on-chain management; they are accessible by, and belong to, anyone using the Cardano blockchain. Their maintenance ultimately rests on the shoulders of the community, so the process of agreeing on canonical contracts must be sorted out. This can be done via a combination of on-chain standards (i.e. trustless script sharing via [Cardano-Reference-Scripts](https://github.com/fallen-icarus/cardano-reference-scripts)) and off-chain outreach (i.e. Twitter/Discord discussions).
 
+---
 ### State Channel & zk Accelerators - WIP
 It may be possible to achieve much higher throughput using clever combinations of state channel and/or zero-knowledge tech. 
 
 The Hydra Protocol Family is promising in this regard, though it is too early in its development to know exactly how so. 
+
+##### Optional, opt-in scaling techniques (batchers, hydra, zk, etc )
 
 likely not enough in its current iteration 
 
@@ -311,7 +289,7 @@ To some, this document may come off as self-aggrandizing and dismissive of exist
 
 Cardano would not be where it is without them, and needs them to keep evolving and pushing forward. 
 
-
+---
 
 ## Supporting Development
 Much like the Hydra Protocol family, this project belongs to the community, so the best way to support its development is with your time. Spread the word on social channels, contribute to Github discussions/PRs, and seek understanding. This is especially true for the developers out there - we need your attention and expertise!
