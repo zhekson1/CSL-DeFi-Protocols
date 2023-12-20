@@ -76,10 +76,10 @@ The above point (capital inefficiency) applies in a similar manner to lending/bo
 
 Semantics aside, the point is that **collectively-managed lending/borrowing protocols are not an issue in and of themselves, but they cannot be the *only* option in a robust economy.**
 
-#### Yield Farming
+#### Yield Farming - WIP
 Many DeFi protocols incentivize liquidity via "yield-farming", where inventory (or liquidation/collateralization) risk is compensated with a token that, optimistically, derives its value from profit-sharing with the protocol's market makers. This means the protocol must charge "batcher" fees *in addition* to regular Cardano transaction fees, which limits the viability of smaller-sized trades. Usually there is also an aggressive emission schedule (early on) that catalyzes initial liquidity, but inflates the value of the token over time. The issue is that **if inventory risk is being compensated by the utility token, then the liquidity (and thus the viability) of the protocol is heavily dependent on the value of the token**. This begs the question: how sustainable is the price of the utility token? The answer depends on the token's function - what does it actually do, beyond incentivizing liquidity? 
 
-Again, one argument might be profit-sharing with a protocol's batchers / market makers. Although this may be necessary in the case of AMMs, it is not necessary in the case of orderbooks. And since AMMs themselves are inferior to orderbooks (as outlined in the previous section). As soon an orderbook-based protocol outcompetes the AMMs, the value of the latter's token drops, which drains liquidity, which further lowers the token's value. In other words, a death spiral. 
+Again, one argument might be profit-sharing with a protocol's batchers / market makers. Although this may be necessary in the case of AMMs, it is not necessary in the case of orderbooks. And since AMMs themselves are inefficient compared to orderbooks (as outlined in the previous section), as soon an orderbook-based protocol outcompetes the AMMs, the value of the latter's token drops, which drains liquidity, which further lowers the token's value. In other words, a death spiral. 
 
 ---
 WIP
@@ -99,25 +99,19 @@ Setting aside securities laws and governance risk, if these are the only options
 users have no choice but to use protocols whose parameters are governed by collectively managed entities. This limits users' financial expressivity, which impedes market efficiency. To be clear, such "decentralized" market makers / banks / funds are not an issue in and of themselves, but they cannot be the only option in a free market.
 
 ----
-#### Governance Risk - WIP
-Protocols that opt for token/plutocratic-based governance are subject to a pandora's box of concerns, especially when "enshrined" actors (oracles, batchers e.t.c.) are involved. 
-
-
-To be clear, good governance is not impossible, but increases in difficulty proportional to the width of a protocol's scope. For something like DeFi (the basis of an alternative financial system) the scope is so wide and the attack vector is so large that 
-
-For brevity's sake we won't dive too deep into this topic, though we offer the following considerations:
+#### Governance Risk
+Protocols that opt for token/plutocratic-based governance are subject to a pandora's box of concerns, especially when "enshrined" actors (oracles, batchers e.t.c.) are involved. Present difficulties/debates over Cardano's governance are a testament to how hard this problem is. Governance is a complex topic beyond the scope of this document, so, for the sake of brevity, consider the following two points:
 
 1. Who decides who gets to be a batcher or oracle, and how are they compensated?
 2. If the answer to #1 is DAOs/dApp-tokens, what guardrails are in place to prevent batchers/oracles from using their profits to gradually become their own overseers?
 
+To be clear, good governance is not impossible, but increases in difficulty proportional to the width of a protocol's scope. The scope of something like DeFi (the basis of an alternative financial system) is so wide and the attack vector is so large that governance should be minimized, wherever possible. Hence, there is a need for agreed upon standards in the DeFi space, at least within the L1 context. 
+
 #### Regulatory Concerns - WIP
+Protocol-specifc "utility" tokens impose high regulatory burdens or uncertainties to users and developers, particularly with regard to securities laws. As mentioned in previous sections, the value of the token is usually tightly coupled with a single team or product, which can easily illicit action from regulators. In fact, this may be a good litmus test for what distinguishing "products" from "protocols". The former's dependence on one or few entities is already problematic, whereas the latter's independence implies freedom from regulatory scrutiny. In the words of Erik Voorhees, "If you are a DeFi Protocol, 'jurisdiction' is a meaningless concept."
+
 Most of DeFi are products, not protocols. 
 
-
-
-dApp-issued "utility" tokens impose high regulatory burdens or uncertainties to users and developers, particularly with regard to securities laws. It is unclear 
-
-We discuss why such properties are i
 
 These protocols are our take on what the bedrock of a  robust and unified DeFi ecosystem should look like.
 
@@ -126,7 +120,7 @@ These protocols are our take on what the bedrock of a  robust and unified DeFi e
 
 If we aspire to build a truly egalitarian economy, great care must be taken to ensure agnosticism and neutrality of the *core* protocols. 
 
-In the words of Erik Voorhees, "If you are a DeFi Protocol, 'jurisdiction' is a meaningless concept."
+
 
 
 
