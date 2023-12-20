@@ -207,7 +207,7 @@ Existing DeFi providers have a headstart in this department, and are already in 
 
 ----
 ## 5 - A Family of Protocols
-
+We advocate for an industry-wide move towards standardized DeFi contracts, used by most or all DeFi service providers. The intention is not to standardize *all* parts of a product's on-chain code, but enough of it so as to avoid the pitfalls of Section 3, without sacrificing the flexibility of products, as mentioned in section 4. To this end, we introduce a family of fully composable P2P protocols that possess all functionalities of a full DeFi stack.
 
 ### 5.1 The Four Protocols
 Currently there are four protocols in the P2P-DeFi family. They are linked and summarized here:
@@ -276,11 +276,14 @@ P2P-DeFi protocols have no "utility token", and thus no "enshrined" on-chain man
 
 ---
 ### State Channel & zk Accelerators - WIP
-It may be possible to achieve much higher throughput using clever combinations of state channel and/or zero-knowledge tech. 
+It may be possible to achieve much higher throughput using clever combinations of state channel and/or zero-knowledge tech. The Hydra Protocol Family is promising in this regard, though it is too early in development to have a clear picture of *exactly* how. 
+Although this is a nuanced topic (beyond the scope of this document), there are many promising avenues to explore here.
+ 
+Firstly, there may be a large number of domain-specific contexts where trust assumptions can be relaxed (especially with regards to custodial vs non custodial execution). One such example is IOG's [Maravedi](https://iohk.io/en/research/library/papers/maravedi-a-secure-and-practical-protocol-to-trade-risk-for-instantaneous-finality/) scheme; a credit-card-like protocol where third parties provide fast finality by trading settlement risk for a fee. Other schemes involving multiple competing (potentially [interconnected](https://iohk.io/en/research/library/papers/interhead-hydra-two-heads-are-better-than-one/)) Head networks may prove useful as well. 
 
-The Hydra Protocol Family is promising in this regard, though it is too early in its development to know exactly how so. 
+More exotic schemes with heavy use of zero knowledge techniques may allow non-custodial execution in an asynchronous setting. This was hinted at via the term "Hydra Tail", though this is entering speculative territory.  
 
-##### Optional, opt-in scaling techniques (batchers, hydra, zk, etc )
+----
 
 likely not enough in its current iteration 
 
@@ -288,11 +291,12 @@ Although its current iteration (The Head Protocol) is likely insufficient for th
 
 Although this is beyond the scope of this document, such schemes are not outside the realm of possibility, especially in domain-specific contexts where trust assumptions can be relaxed. 
 
-IOG's [Maravedi](https://iohk.io/en/research/library/papers/maravedi-a-secure-and-practical-protocol-to-trade-risk-for-instantaneous-finality/) scheme is one such example; a credit-card-like protocol where third parties provide fast finality by trading settlement risk for a fee. 
+I
 
 ### Beyond DeFi (WIP)
 - Discuss the protocols' potential to bridge the gap between DeFi and TradFi
 - DeFi as the anchor (like FedWire), TradFi as regulated end user apps (like banking)
+- maybe put this in section 4
 
 ## Conclusion - WIP
 To some, this document may come off as self-aggrandizing and dismissive of existing DeFi platforms. Nothing could be further from the truth. Our intention is for this document to serve as a rallying cry for the community - *especially* for existing DeFi providers. They already have a headstart in terms of brand recognition and liquidity, and will benefit themselves *and* their users by incorporating these principles into their stacks.
