@@ -455,9 +455,9 @@ the foundational DApp.
 Using stake pools like this allows for crowd-sourced funding without requiring users to actually
 give any "principle" to the developers; users just give up some delegation profits. Crucially, since
 no principle was given up by users AND no tokens were issued, using stake pools like this flies
-under the radar of ALL regulations. No harm, no foul.
+under the radar of MOST regulations. No harm, no foul.
 
-This is the best way to fund initial development. Not only does this approach circumvent all
+This is the best way to fund initial development. Not only does this approach circumvent most
 regulatory risk, but it is also maximally expressive for users since they can undelegate their
 assets if they ever start to doubt the team; instead of losing their life savings from a scam, users
 only miss out on some delegation rewards. Likewise, once development is done, users can delegate
@@ -524,6 +524,6 @@ transaction.
 If you agree with the overall philosophy of this manifesto and like our approach, please consider
 delegating to our stake pool to help fund the initial development:
 
-Ticker: P2PFI
-Hex: bbebbbf81c42de5b84fbbc82c4feab78f8bd8bcf8b5af7c73a06664a
+Ticker: P2PFI  
+Hex: bbebbbf81c42de5b84fbbc82c4feab78f8bd8bcf8b5af7c73a06664a  
 Bech32: pool1h04mh7qugt09hp8mhjpvfl4t0rutmz703dd003e6qeny5jf9c57
