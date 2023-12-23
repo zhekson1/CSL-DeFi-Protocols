@@ -255,7 +255,7 @@ that don't rely on yield tokens. The [Funding](#Funding) section at the end expl
 Finally, scalability is important. *However, of all of the requirements, it is the least important.*
 The reason for this is that scalability can almost always be augmented with things like sidechains
 and L2s. The same is not true for any of the previous requirements. The difference is in the
-systemic risks that the disconnect between the foundational layer and the rest create.
+systemic risks that the disconnect between the foundational layer and the rest create:
 
 ##### A peripheral application adds a feature that does not exist at the foundational layer (expressiveness).
 
