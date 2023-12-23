@@ -4,7 +4,7 @@
 
 - [Abstract](#abstract)
 - [Priorities for a True Blockchain Economy](#priorities-for-a-true-blockchain-economy)
-- [The DeFi Heirarchy](#the-defi-heirarchy)
+- [The DeFi Hierarchy](#the-defi-hierarchy)
 - [Funding](#funding)
 - [Conclusion](#conclusion)
 - [The P2P-DeFi Protocols](#the-p2p-defi-protocols)
