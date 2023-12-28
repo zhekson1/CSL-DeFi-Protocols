@@ -49,10 +49,23 @@ This is especially true in the realm of DeFi, where eUTxO eases development of r
 
 ----
 
-## Introduction (New)
-The advent of distributed ledger technologies has heralded a reimagining of what a global rules-based order could look like. Economics plays a central role in any society, so the first applications of blockchain naturally center around money and finance. However, challenging the status quo requires a superior system *and* a means to thwart 
+### The Idealized Economy
+Economics is best viewed through the lens of information theory. 
 
-If the goal is to reengineer the backend of global finance, it pays to take a step back and approach the task from a first principles perspective. 
+
+#### Axioms
+The basic observation is that there is infinite demand in a world of scarce resources, so individuals are forced to prioritize those resources which are most valuable to them. What is more valuable to one may be less valuable to another, so trade occurs to settle this value-difference. Prices *arise* bottom-up from the collection of these value-differences throughout the population. Prices can therefore be thought of as pieces of information that convey the reality of individuals' collective value-differences. Individual value-differences are in a constant state of change, so the faster and more faithfully prices are updated to reflect them, the sooner and more appropriately resources are allocated. However, real resources are highly varied; some are intangible, some decay, and many are indivisible. All of these properties impede the speed and accuracy of price movement, resulting in slower and less accurate resource allocation. Money solves this problem by serving as a medium of exchange; smoothing out and accelerating price discovery. To do so, money must transmit price-information *more effectively* than the resources could on their own. The best (and therefore the most competitive) moneys are those that are *most* effective at transmitting price-information. 
+
+Keeping in mind the role of money as defined above, we've arrived at the central question of this document: **what makes a money *effective* at transmitting price-information**? Many have answered this question by listing the *properties* of commodities that have historically been used as money (i.e. fungibility, portability, durability, e.t.c). However, this doesn't actually answer the question from first principles; it only hints at the answer by precedent. Since we're questioning the whole system, it pays to step back even further.
+
+Again, the purpose of money (and money systems) is to propagate information that reflects underlying *reality* as faithfully and with as little friction as possible. Since this reality is nothing more than the collective value-differences of individuals, and since swift allocation of resources depends on individuals' ability to *always express* these differences, then **the most effective money system is one that guarantees reliable propagation of individuals' value-differences, the fastest.** Order is important here; speed of propagation is a competitive advantage for a money system, but speed cannot under any circumstances undermine the system's reliability nor its accuracy, lest the misallocation of resources. This is not purely theoretical; it is evidenced by the evolution of money throughout history.
+
+#### Historical Precedent
+From bartering, to commodity-moneys, to commodity-backed paper, to derivatives and modern financial institutions; technological innovation fuels this trend, pushing it towards the aforementioned ideal in a darwinian manner. For example, although paper notes are obviously a faster and more expressive method of information transfer than raw commodities, it wasn't until the rise of an entity or system that could enforce the reliability and faithfulness of said paper that commodities were outcompeted as the dominant money. The first such entity was the Dutch Empire in the 1600's; advancements in printing, shipbuilding, and mercantilism afforded them enough power/influence that they could enforce their notes *reliably* enough, such that the notes became more effective at propagating price-information than commodities. Although other moneys existed, the Dutch monetary system (the Guilder) became *the* dominant monetary system wherever the empire held significant economic and/or military influence. This is a key point; the success of the Guilder depended *not* on the technicalities of the money alone (quality paper, quality ships, e.t.c.), but on the Empire's overall ability to administer a reliable and expressive (and thus competitive) price-information *network*. In other words, **the Dutch paper-based monetary system was only ever as effective as the Empire's effectiveness as network administrators, where the effectiveness of the network is defined by how reliable it is at propagating individuals' value-differences.** It just so happens that, at the time, the effectiveness of being such an administrator was heavily intertwined with economic/military might; there simply was no better way to enforce a money-network's reliability. This is further attested by the rise of the British Empire, several decades later. 
+
+The British Empire operated its money system (the Sterling) with methods and technologies very similar to those of the Dutch Guilder (paper notes backed by real resources). And yet, the Sterling supplanted the Guilder as the dominant money system over a relatively short timeframe. This is because the superiority of the Sterling had nothing to do with the money itself, and everything to do with the quality of the network accessible by its users. The British were a superior economic/military power, thus their network was the fastest and most reliable. This also explains why currencies are always the last "asset" that rises in a rising empire; their success depends on the quality of the network, which in turn depends on real socioeconomic conditions. 
+
+
 
 ### Essential Properties of a Free Economy
 The most basic building block of any free economy is voluntary and expressive trade between *two* parties. All other parties (brokers, enforcement agencies, margin trading, credit cards, e.t.c.) is peripheral infrastructure built *atop* the basics. Critically, peer-to-peer trades do not *depend* on anything other than the will of the two parties involved, though additional entities *can* be involved, where and when desired. If the two parties had full custody of their assets, but had *no option* to exchange without a middleman, this would not be a free economy.
@@ -267,15 +280,25 @@ Cardano would not be where it is without them, and needs them to keep evolving a
 ---
 
 ## Supporting Development
-Much like the Hydra Protocol family, this project belongs to the community, so the best way to support its development is with your time. Spread the word on social channels, contribute to Github discussions/PRs, and seek understanding. This is especially true for the developers out there - we need your attention and expertise!
+Much like the Hydra Protocol family, this project belongs to the community, so the best way to support its development is with your time. Spread the word on social channels, contribute to Github discussions/PRs, and seek understanding. The ideas here are just as much philosophical as they are technical, so lots of community discussions is the best way to capture the attention of developers. The more attention these ideas receive from developers, the faster they will be iterated upon and incorporated into the DeFi ecosystem.
 
-In the near to mid term, this project will require an enormous grassroots lift. There is nothing to sell, no token/equity for would-be investors, and a lot of work to do. 
+That being said, there is a real need for funding ongoing development of the core protocols. There is nothing to sell, no token/equity for would-be investors, and a lot of work to do. Fortunately, delegated PoS networks like Cardano present a great opportunity for alternative funding: stake pools.
+
+Stake pools are one of the best mechanisms for funding development of DeFi "primitives" that are of the style presented in this document, for the following reasons:
+
+- Delegations are sticky; once a delegation is made, it sticks around until the delegator chooses to opt out. This equates to a more reliable/consistent income stream, as opposed to the sporadic nature of donations. 
+- Projects that opt for token-based fundraising (i.e. public sales, ISPOs, e.t.c.) are subject to regulatory scrutiny, especially if their project is successful enough that it poses a threat to governments or the financial elite. On the other hand, the nature of the SPO-delegator relationship in Cardano PoS lends itself to less regulatory scrutiny, since there is never anything that could be construed as an investment contract, nor is there every any principle at risk. 
 
 If you would like to support development of P2P-DeFi protocols, please consider delegating to our stake pool:
 
 Ticker: P2PFI
+minFee: 170
+variableFee: 2%
+
 Hex: bbebbbf81c42de5b84fbbc82c4feab78f8bd8bcf8b5af7c73a06664a
 
 Bech32: pool1h04mh7qugt09hp8mhjpvfl4t0rutmz703dd003e6qeny5jf9c57
+
+
 
 
