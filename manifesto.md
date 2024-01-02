@@ -18,27 +18,6 @@ Blockchain-based decentralized finance (DeFi) protocols have long sought to prov
 
 We argue why the three aforementioned points are critical to the success of DeFi on Cardano, and why they cannot be addressed by current DeFi platforms that rely on pooled liquidity architectures and enshrined off-chain actors. We then argue that the best way to address these points is through a separation of concerns via a *layered* architecture, wherein a **standardized** "smart contract layer" sits between the Cardano blockchain and DeFi service providers. Finally, we introduce *P2P-DeFi Protocols*, a family of open plutus contracts - our take on what such a contract-layer could look like. This document is intended to serve as a high level overview of our philosophical and architectural decision making for a robust DeFi economy.
 
-## 2 - Introduction & Motivation (A Brief Overview of Past, Present, and Future)
-For all of recorded history, people have been striving towards a world that protects and upholds our most noble ideals. In what has been referred to by many as an "upwards spiral" of death and rebirth, from Roman Democracy to the American Constitution, we have long been in the business of engineering and reengineering society for the betterment of mankind. Every revolution up this spiral has been a result of new technologies that shine a light on the inadequacies and weaknesses of the status quo. The printing press, for example, enabled the spread of information at an unprecedented scale, which highlighted the failures of the existing system while *simultaneously* unifying the populace around a new class of systems, never before possible. This culminated in the Constitutional Republic, a first-of-its-kind, rules-based order, that elevated *written principles* to the highest authority, and drove forward the greatest economic and social advancements humanity had ever seen. 
-
-The internet appears to be evolving over a similar trajectory. Much like the printing press, it has revolutionized the spread of information; enabling an unprecedented level of idealogical or cultural closeness between geographically disparate populations. With this closeness comes an understanding of common values, common enemies, and a shared desire for systems that protect the former from the latter. And as if on cue, the advent of distributed ledger technologies paved the way for a reimagining of what a rules-based world order could look like. One that elevates *code* to the highest authority, thereby insulating itself from the openness of human interpretation. For the first time ever, we, the "people of the internet", have the tools to build systems that sanctify our newfound commonalities and defend us from discretionary overreach. As the powers-that-be continue miring future generations with unpayable debts, we find ourselves at a precipice not so dissimilar to the one faced by the American colonists just a few short centuries ago. 
-
-However, such transitions do not come without their challenges. 
-
-The early American pioneers had a shared vision for a system that  individual liberty. 
-
-were fraught with disagreement over the rules of the nation, all while the greater British Empire wasn't taking kindly to its loss of power. They
-
-
-goal was for a set of rules that preserved as much individual liberty as possible, while keeping 
-
-
-It took those pioneers paid a heavy price, in blood and in treasure, to sort out their internal differences whilst hanging on to the commonalities that distinguished them from the monarchy. 
-
-
-Chiefly, it was their focus on individual freedom
-
-It took multiple wars and many rewrites, but it was ultimately out of this tension - between maximizing the scope of freedom whilst minimizing chaos - that The Constitution was born. Likewise, the pioneers of the new order must strive for a set of rules that balance generalizability of scope with internal cohesion. <\WILL PHRASE BETTER - THIS IS THE KEY POINT> , all while the old guard resists its loss of power. 
 
 ----
 WIP
@@ -48,6 +27,9 @@ Cardano's eUTxO model, with its asset-oriented programming paradigm, is uniquely
 This is especially true in the realm of DeFi, where eUTxO eases development of robust, scalable, and capital efficient protocols. However, its full potential has yet to be realized, largely due to its novelty, and thus a lack of standards. 
 
 ----
+
+## Introduction (New)
+The advent of distributed ledger technologies (DLT) has heralded a reimagining of what a global rules-based order could look like. Economics plays a central role in any society, so the first applications of blockchain naturally center around money and finance. However, challenging the status quo requires not only a superior system, but also a means to thwart attempts at disruption by the incumbents.  If the goal is to reengineer the backend of global finance, it pays to take a step back and approach the task from a first principles perspective. Therefore, it is important to first outline an idealized economy, then describe how the current system falls short. Lastly, we explore how DLTs can improve on the status quo.
 
 ### The Idealized Economy
 Economics is best viewed through the lens of information theory. 
@@ -61,14 +43,30 @@ Keeping in mind the role of money as defined above, we've arrived at the central
 Again, the purpose of money (and money systems) is to propagate information that reflects underlying *reality* as faithfully and with as little friction as possible. Since this reality is nothing more than the collective value-differences of individuals, and since swift allocation of resources depends on individuals' ability to *always express* these differences, then **the most effective money system is one that guarantees reliable propagation of individuals' value-differences, the fastest.** Order is important here; speed of propagation is a competitive advantage for a money system, but speed cannot under any circumstances undermine the system's reliability nor its accuracy, lest the misallocation of resources. This is not purely theoretical; it is evidenced by the evolution of money throughout history.
 
 #### Historical Precedent
-From bartering, to commodity-moneys, to commodity-backed paper, to derivatives and modern financial institutions; technological innovation fuels this trend, pushing it towards the aforementioned ideal in a darwinian manner. For example, although paper notes are obviously a faster and more expressive method of information transfer than raw commodities, it wasn't until the rise of an entity or system that could enforce the reliability and faithfulness of said paper that commodities were outcompeted as the dominant money. The first such entity was the Dutch Empire in the 1600's; advancements in printing, shipbuilding, and mercantilism afforded them enough power/influence that they could enforce their notes *reliably* enough, such that the notes became more effective at propagating price-information than commodities. Although other moneys existed, the Dutch monetary system (the Guilder) became *the* dominant monetary system wherever the empire held significant economic and/or military influence. This is a key point; the success of the Guilder depended *not* on the technicalities of the money alone (quality paper, quality ships, e.t.c.), but on the Empire's overall ability to administer a reliable and expressive (and thus competitive) price-information *network*. In other words, **the Dutch paper-based monetary system was only ever as effective as the Empire's effectiveness as network administrators, where the effectiveness of the network is defined by how reliable it is at propagating individuals' value-differences.** It just so happens that, at the time, the effectiveness of being such an administrator was heavily intertwined with economic/military might; there simply was no better way to enforce a money-network's reliability. This is further attested by the rise of the British Empire, several decades later. 
+From bartering, to commodity-moneys, to commodity-backed paper, to derivatives and modern financial institutions; technological innovation fuels this trend, pushing it towards the aforementioned ideal in a darwinian manner. For example, although paper notes are obviously a faster and more expressive method of information transfer than raw commodities, it wasn't until the rise of an entity or system that could enforce the reliability and faithfulness of said paper that commodities were outcompeted as the dominant money. The first such entity was the Dutch Empire in the 1600's; advancements in printing, shipbuilding, and mercantilism afforded them enough power/influence that they could enforce their notes *reliably* enough, such that the notes became more effective at propagating price-information than commodities. Although other moneys existed, the Dutch monetary system (the Guilder) became *the* dominant monetary system wherever the empire held significant economic and/or military influence. This is a key point; the success of the Guilder depended *not* on the technicalities of the money alone (quality paper, quality ships, e.t.c.), but on the Empire's overall ability to administer a reliable and expressive (and thus competitive) price-information *network*. In other words, **the Dutch paper-based monetary system was only ever as effective as the Empire's effectiveness as network administrators, where the effectiveness of the network is defined by how reliable it is at propagating individuals' value-differences.** It just so happens that, at the time, the effectiveness of being such an administrator was heavily intertwined with economic/military might; there simply was no better way to enforce a money-network's reliability. This is further attested by the rise of the British Empire, several decades later. Although the British Empire operated its money system (the Sterling) with methods and technologies very similar to those of the Dutch Guilder (paper notes backed by real resources), it was nevertheless supplanted as the dominant money system. This had nothing to do with the physical money itself, and everything to do with the robustness of the socioeconomic network that a money gave its users access to. This also explains why moneys were always the last "asset" to rise in a rising empire; a money's success depends on the quality of its network, which is defined by how reliable it is at providing its users access to favorable socioeconomic conditions. Hence, it is no surprise why the Sterling supplanted the Guilder, and why the Dollar eventually supplanted the Sterling.
 
-The British Empire operated its money system (the Sterling) with methods and technologies very similar to those of the Dutch Guilder (paper notes backed by real resources). And yet, the Sterling supplanted the Guilder as the dominant money system over a relatively short timeframe. This is because the superiority of the Sterling had nothing to do with the money itself, and everything to do with the quality of the network accessible by its users. The British were a superior economic/military power, thus their network was the fastest and most reliable. This also explains why currencies are always the last "asset" that rises in a rising empire; their success depends on the quality of the network, which in turn depends on real socioeconomic conditions. 
+#### Issues with Current World Order
+Ever since the end of WW2, and especially after the collapse of the Soviet Union, the United States has been the dominant economic and military power of the world. Consequently, the Dollar system has been the most reliable avenue for individuals to express their value-differences. However, the dollar system is not without its problems:
+
+- New Dollars are created and distributed by few individuals on a discretionary basis, resulting in an inflation burden that is unfairly spread across the population (also known as the Hume-Cantillon effect). Essentially, the first to receive new money enjoy the most benefit and suffer the least consequences, whereas the last to receive new money enjoy the least benefit and suffer the most consequences. Usually, the order of first to last looks something like: politicians, then bankers, then owners of businesses and financial assets, and finally workers. 
+
+- Access to the Dollar system is mediated by the same few individuals, and also on a discretionary basis. Individuals', corporations', and whole countries' access to the Dollar can be quickly restricted on a whim, which can be catastrophic for them. 
+
+#### Reliability and Integrity
+Up until the advent of Bitcoin, all non-commodity money systems required a powerful entity/empire to act as enforcers or "network administrators". 
+
+
+Recall that money is really just an information system, and an information system is only as effective as it is *reliable and expressive.* 
+
+
+#### System-agnostic Principles
+We've established that money systems are really just price-information networks, where prices are the value-differences of individuals. To be an effective money, its network must continuously transmit these value-differences as reliably and as accurately as possible. 
+
+
 
 
 
 ### Essential Properties of a Free Economy
-The most basic building block of any free economy is voluntary and expressive trade between *two* parties. All other parties (brokers, enforcement agencies, margin trading, credit cards, e.t.c.) is peripheral infrastructure built *atop* the basics. Critically, peer-to-peer trades do not *depend* on anything other than the will of the two parties involved, though additional entities *can* be involved, where and when desired. If the two parties had full custody of their assets, but had *no option* to exchange without a middleman, this would not be a free economy.
 
 The fundamental value-add of blockchains is in their ability to uphold and protect the right to 
 
@@ -129,17 +127,9 @@ To be clear, good governance is not impossible, but increases in difficulty prop
 #### Regulatory Concerns
 Protocol-specific "utility" tokens impose high regulatory burdens or uncertainties to users and developers, particularly with regard to securities laws. As mentioned in the previous section, the value of the token is usually tightly coupled with a single team or product, which can easily illicit action from regulators. In fact, this may be a good litmus test for distinguishing "products" from "protocols". The former's dependence on one or few entities is already problematic from the perspective of resiliency/availability, let alone regulatory scrutiny. If we aspire to build a truly egalitarian economy, great care must be taken to ensure agnosticism and neutrality of the *core* protocols. In the words of Erik Voorhees, "If you are actually a DeFi platform, 'jurisdiction' is a meaningless concept."
 
-
-
-
 ### Domain-Specific Scaling
 
 ### Towards Common DeFi Standards
-
-### Money, Tokens, and Liquidity
-
-
-
 
 ## 4 - A Return to First Principles
 Astute readers will have noticed a pattern in the previous section; each subsection's critique centers around one or both of the following two points:
@@ -147,7 +137,7 @@ Astute readers will have noticed a pattern in the previous section; each subsect
 1. Pooled liquidity architectures
 2. Enshrined off-chain entities
 
-We've arrived at the crux of the matter: **DeFi protocols, in their current form, are overly siloed in scope.** Be it the enshrinement of oracles/batchers, or the concentration of liquidity into pooled form, DeFi users are locked into the entire on-and-off-chain stack of their preferred protocol(s). 
+We've arrived at the crux of the matter: **DeFi protocols, in their current form, are overly siloed in scope.** Be it the enshrinement of oracles/batchers, or the concentration of liquidity into pooled form, DeFi users are locked into the limited on-and-off-chain stack of their preferred protocol(s),
 
 ---
 WIP
@@ -298,7 +288,5 @@ variableFee: 2%
 Hex: bbebbbf81c42de5b84fbbc82c4feab78f8bd8bcf8b5af7c73a06664a
 
 Bech32: pool1h04mh7qugt09hp8mhjpvfl4t0rutmz703dd003e6qeny5jf9c57
-
-
 
 
