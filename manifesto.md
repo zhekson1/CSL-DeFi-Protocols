@@ -2,12 +2,10 @@
 
 ## Table of Contents
 1. Abstract
-2. Introduction
-3. Existing Limitations of DeFi
-4. Desired Properties
-5. P2P-DeFi Paradigm
-6. Future Directions
-7. Conclusion & Support
+2. Introduction: Principles of Money and Finance
+3. Motivation: Existing Limitations of DeFi
+4. Solution: A Family of DeFi Primitives
+5. Conclusion & Support
 
 ## 1 - Abstract
 Blockchain-based decentralized finance (DeFi) protocols have long sought to provide an alternative financial platform for the disenfranchised or unbanked peoples of the world. Although we've come a long way since Bitcoin's genesis, the industry has yet to deliver on such promises sustainably, at scale. A key reason for this is the lack of a comprehensive and unified framework for DeFi, even within a particular L1 blockchain. This is especially regrettable in the context of Cardano, for three principal reasons:
@@ -16,24 +14,13 @@ Blockchain-based decentralized finance (DeFi) protocols have long sought to prov
 2. The viability of PoS is critically dependent on individuals' free and sovereign ability to express stake-based preferences (consensus, voting, e.t.c.)
 3. An alternative financial system must provide high availability guarantees to compete with, and resist disruption by, incumbents of the status quo, who are incentivized to rally against it.
 
-We argue why the three aforementioned points are critical to the success of DeFi on Cardano, and why they cannot be addressed by current DeFi platforms that rely on pooled liquidity architectures and enshrined off-chain actors. We then argue that the best way to address these points is through a separation of concerns via a *layered* architecture, wherein a **standardized** "smart contract layer" sits between the Cardano blockchain and DeFi service providers. Finally, we introduce *P2P-DeFi Protocols*, a family of open plutus contracts - our take on what such a contract-layer could look like. This document is intended to serve as a high level overview of our philosophical and architectural decision making for a robust DeFi economy.
+We argue why the three aforementioned points are critical to the success of DeFi, and why they cannot be addressed by current DeFi platforms that rely on pooled liquidity architectures and enshrined off-chain actors. We then argue that the best way to address these points is through a separation of concerns via a *layered* architecture, wherein a **standardized** "smart contract layer" sits between an expressive and high-availability blockchain (like Cardano), and DeFi service providers. Finally, we introduce *P2P-DeFi Protocols*, a family of open plutus contracts - our take on what such a contract-layer could look like. This document is intended to serve as a high level overview of our philosophical and architectural decision making for a robust DeFi economy.
 
+## Introduction: Principles of Money & Finance
+The advent of distributed ledger technologies (DLT) has heralded a reimagining of what a global rules-based order could look like. Economics plays a central role in any society, so the first applications of blockchain naturally center around money and finance. However, challenging the status quo requires not only a superior system, but also a means to thwart attempts at disruption by the incumbents.  If the goal is to reengineer the backend of global finance, it pays to take a step back and approach the task from a first principles perspective. Therefore, it is important to first outline an idealized economy, then describe how the current system falls short. Finally, we explore how DLTs can improve on the status quo.
 
-----
-WIP
-
-Cardano's eUTxO model, with its asset-oriented programming paradigm, is uniquely well suited to achieve this balance. 
-
-This is especially true in the realm of DeFi, where eUTxO eases development of robust, scalable, and capital efficient protocols. However, its full potential has yet to be realized, largely due to its novelty, and thus a lack of standards. 
-
-----
-
-## Introduction (New)
-The advent of distributed ledger technologies (DLT) has heralded a reimagining of what a global rules-based order could look like. Economics plays a central role in any society, so the first applications of blockchain naturally center around money and finance. However, challenging the status quo requires not only a superior system, but also a means to thwart attempts at disruption by the incumbents.  If the goal is to reengineer the backend of global finance, it pays to take a step back and approach the task from a first principles perspective. Therefore, it is important to first outline an idealized economy, then describe how the current system falls short. Lastly, we explore how DLTs can improve on the status quo.
-
-### The Idealized Economy
-Economics is best viewed through the lens of information theory. 
-
+### Economics as an Information Network
+Economics is best viewed through the lens of information theory, where money/financial systems serve to propagate information about the reality of individuals' values. 
 
 #### Axioms
 The basic observation is that there is infinite demand in a world of scarce resources, so individuals are forced to prioritize those resources which are most valuable to them. What is more valuable to one may be less valuable to another, so trade occurs to settle this value-difference. Prices *arise* bottom-up from the collection of these value-differences throughout the population. Prices can therefore be thought of as pieces of information that convey the reality of individuals' collective value-differences. Individual value-differences are in a constant state of change, so the faster and more faithfully prices are updated to reflect them, the sooner and more appropriately resources are allocated. However, real resources are highly varied; some are intangible, some decay, and many are indivisible. All of these properties impede the speed and accuracy of price movement, resulting in slower and less accurate resource allocation. Money solves this problem by serving as a medium of exchange; smoothing out and accelerating price discovery. To do so, money must transmit price-information *more effectively* than the resources could on their own. The best (and therefore the most competitive) moneys are those that are *most* effective at transmitting price-information. 
@@ -50,10 +37,17 @@ Ever since the end of WW2, and especially after the collapse of the Soviet Union
 
 - New Dollars are created and distributed by few individuals on a discretionary basis, resulting in an inflation burden that is unfairly spread across the population (also known as the Hume-Cantillon effect). Essentially, the first to receive new money enjoy the most benefit and suffer the least consequences, whereas the last to receive new money enjoy the least benefit and suffer the most consequences. Usually, the order of first to last looks something like: politicians, then bankers, then owners of businesses and financial assets, and finally workers. 
 
-- Access to the Dollar system is mediated by the same few individuals, and also on a discretionary basis. Individuals', corporations', and whole countries' access to the Dollar can be quickly restricted on a whim, which can be catastrophic for them. 
+- Access to the Dollar system is mediated by the same few individuals, also on a discretionary basis. Individuals', corporations', and whole countries' access to the Dollar can be quickly restricted, which can be catastrophic for them. For example, the entire country of Iran (and all its people) are cut off from the Dollar, and are thus cut off from much of humanity's goods and services.
 
-#### Reliability and Integrity
-Up until the advent of Bitcoin, all non-commodity money systems required a powerful entity/empire to act as enforcers or "network administrators". 
+As is common for many empires throughout history, the United States' dominance has led to a stagnation of the drivers that made it great in the first place. This is evidenced by the the loss of manufacturing capabilities, exponentially increasing debt levels, and an overextension of military power throughout the globe. Since the United States is quickly losing its credibility to faithfully administer the Dollar, and since the effectiveness of a money system ultimately depends on the robustness of its administrator(s), there is an ever-increasing demand for an alternative to the Dollar. 
+
+### A Return to the Fundamentals
+In seeking an alternative to the (declining) status quo, we must be careful and precise in defining a system that is more effective (and can thus outcompete) the status quo. 
+
+The most basic building block of any free economy is *voluntary and expressive* trade between *two* parties. All other parties (brokers, enforcement agencies, margin trading, credit cards, e.t.c.) is peripheral infrastructure built *atop* the basics. Critically, peer-to-peer trades do not *depend* on the will of anyone besides that of the two parties involved, though additional parties *can* be involved, where and when desired. If the two parties had full custody of their assets, but had *no option* to exchange without a middleman, this would not be a free economy. 
+
+
+From these basic axioms we can derive some essential properties that a free economy must have. 
 
 
 Recall that money is really just an information system, and an information system is only as effective as it is *reliable and expressive.* 
@@ -62,51 +56,77 @@ Recall that money is really just an information system, and an information syste
 #### System-agnostic Principles
 We've established that money systems are really just price-information networks, where prices are the value-differences of individuals. To be an effective money, its network must continuously transmit these value-differences as reliably and as accurately as possible. 
 
+#### Challenges
+An alternative economy will be seen as a threat by those in power. 
 
 
 
 
-### Essential Properties of a Free Economy
+## 3. Motivation: Limitations of DeFi
+Although DeFi has great potential to improve the global economy, the blockchain industry as a whole is in its early stages and is undergoing rapid development. "There are no solutions, only trade-offs" is a quote by Thomas Sowell that could not be more applicable to the current state of affairs in the industry. It applies to L1 blockchains *and* to competing DeFi protocols within a particular blockchain network. It is therefore imperative to examine these tradeoffs as they relate to the principles outlined in the previous sections. By conducting this examination in order from L1 -> DeFi protocol, we can quickly narrow down on a set of design patterns that best instantiate these principles.
 
-The fundamental value-add of blockchains is in their ability to uphold and protect the right to 
+### Limitations of Existing L1s
+Recall from the previous section that an effective money system is nothing more than an effective information system, where "effectiveness" is defined by the system's ability to *reliably facilitate the expression of individual value-differences*. Since no DeFi protocol can be more reliable nor more expressive than the underlying blockchain, it is natural to ask the following two questions when evaluating a candidate network for DeFi:
 
-### Challenges
-An alternative economy will be seen as a threat 
+1. How *reliable* is the underlying blockchain?
+2. How *expressive* is the underlying blockchain?
+
+These are foundational questions that dictate the trajectory of any protocol built atop a blockchain, and so are worth exploring further.
+
+#### Reliability = Availability + Integrity - WIP
+
+Solana (monolithic BFT speed):
+- no guarantees of consensus
+- centralized tokenomics -> centralized PoS
+
+Radix (sharding with no backup)
+- no availability guarantees for individual shards
+
+One of the key trade-offs in the blockchain industry is that of resiliency vs speed. 
 
 
-## 3 - Principles of DeFi, and Existing Limitations
-Current DeFi protocols on Cardano share some undesirable properties that all stem from a common set of assumptions and design philosophies. In this section we lay out these properties and discuss what makes them so undesirable. In the next section, we discuss how all of these properties are consequences of the same few design philosophies. 
+Many L1 networks have chosen to sacrifice 
+
+
+In the context of blockchains, this naturally leads to two 
+
+#### Expressivity = Flexibility + Composability - WIP
+
+
+
+### Limitations of Cardano-based DeFi
+Current DeFi protocols on Cardano share some undesirable properties that all stem from a common set of assumptions and design philosophies. In this section we lay out these properties and discuss what makes them so undesirable. Next, we discuss how all of these properties are consequences of the same few design philosophies. 
 
 Note:  Every protocol doesn't suffer from *all* of these properties, but enough of them do, so as to underrepresent the power of Cardano-based DeFi. 
 
-### 3.1 - Fractured, Non-Composable Protocols
+#### 3.1 - Fractured, Non-Composable Protocols
 One of the greatest advantages of eUTxO is *atomic composability*, or the ability to "combine" different pieces of (related or unrelated) logic in the same transaction. This is great for throughput, but also enables the creation of complex, multi-step protocols. However, composability is not a given; it only works for contracts that are co-designed to work well with each other. Here lies one of the greatest challenges of eUTxO: how can we develop standards that **strike the right balance between being specific enough to enable robust composability, but also generalizable enough to minimally restrict the scope of adherent protocols?** Current DeFi platforms lack composability due to their dependence on various off-chain actors that are siloed in scope and "enshrined" (hardcoded in the smart contracts) within the protocol. 
 
 <POOLED ARCHITECTURE TOO?>
 
-### 3.3 - Low Availability Guarantees
+#### 3.3 - Low Availability Guarantees
 An alternative financial system will likely be perceived as a threat by those in positions of high (legacy) power, who may employ a variety of regulatory or cyber-offensive tactics to disrupt it. Current DeFi protocols on Cardano rely on "enshrined" off-chain entities (i.e. oracles, batchers, e.t.c.), which greatly increases the protocols' attack surface. If DeFi is to ever meet the needs of a global economy, it must be highly resilient against such disruptions, and, at its *core*, it must be agnostic to governmental regulation. Security without availability is not enough to challenge the status quo; a well designed system must preserve both. This aligns with the original cypherpunk ethos of the blockchain industry, and is well exemplified in [this article](https://jacob.energy/hyperstructures.html).
 
-### 3.4 - Threats to Ouroboros PoS
+#### 3.4 - Threats to Ouroboros PoS
 Many DeFi protocols sacrifice full delegation/voting control, especially in cases of "pooled" liquidity. Such protocols usually attempt to compensate via DAO-based delegations, but this is never as expressive individual stake-control, and opens the door to a variety of governance-based attacks. There are too many scenarios to list here, but suffice to say that **the more delegation control is decoupled from the ADA owners, the more distorted Ouroboros' game theory becomes.** It is difficult to predict the extent of this distortion, so minimizing it is of critical importance.
 
-### 3.5 Low Expressivity
+#### 3.5 Low Expressivity
 The viability of *any* financial system depends on its constituency's freedom to express individual sentiment. This is a foundational principle of free market economies; any deviation from individuals' ability to express themselves (financially) distorts the information system that is money and prices. The extent of this distortion is nonlinear and difficult to predict, so minimizing it is of critical importance. Unfortunately, many DeFi protocols employ pooled liquidity architectures, which limits individuals' expressivity. This has broad implications for the efficiency and sustainability of the protocol, further discussed in the next two subsections.
 
 To be clear, concentrating liquidity into collectively managed pools is not an issue in and of itself - in many cases such entities serve to accelerate price discovery and market efficiency (i.e. hedge funds, banks, .e.t.c.). The issue is when such entities are the *only* avenue for participating in the DeFi economy, in which case their outsized influence on the market undermines efficient price discovery. Even if there are many such entities competing with each other, they can never be as efficient as a market composed of individuals' sentiments. If DeFi is to ever challenge or compete with the legacy financial system, it must allow individuals to freely express themselves.
 
-#### 3.5.1 Capital Inefficiency
+##### 3.5.1 Capital Inefficiency
 The popularity of Accounts based ledgers gave rise to the pooled AMM-style architectures that dominate the DeFi landscape today. However, AMM liquidity providers suffer from inventory risk (i.e. impermanent loss), due to the models' inefficient provisioning of liquidity over the cost curve. Even for AMMs with "concentrated liquidity", such models can never be as capital efficient as a true orderbook-style protocol. Unfortunately, many DeFi protocols on Cardano have adopted AMM-style designs, which is regrettable given how uniquely well the eUTxO model maps onto orderbook architectures. In fact, expressivity is much easier to capture in the eUTxO model, since each UTxO's execution conditions can be tuned to individuals' preferences. This is perhaps one of the main reasons why traditional financial professionals have yet to take DeFi seriously. Capital efficiency, and thus *expressive* eUTxO-based orderbook-style protocols, are a prerequisite for robust DeFi markets.  
 
-#### 3.5.2 Constrained Lending/Borrowing
-The above point (capital inefficiency) applies in a similar manner to lending/borrowing protocols. This is perhaps even more impactful, since credit/debt markets are usually the largest market(s) in a mature economy. Many lending/borrowing protocols on Cardano employ pooled liquidity architectures, which necessitates the constraining of loan terms, thereby limiting lenders' flexibility to issue loans as they best see fit. Furthermore, such protocols' parameters are usually governed via their "utility" tokens, which makes them more akin to a "collective bank", rather than a "decentralized protocol". All of these restrictions inhibit the efficient price discovery of lending/borrowing protocols, which limits DeFi's ability to challenge the status quo. If as an industry we aspire to build better systems than those that came before, then credit/debt markets must be driven bottom-up by individuals, not top-down by few entities. This requires giving individuals maximum freedom in negotiating loan terms (interest rates, collateralization, risk assessment, e.t.c.).
+##### 3.5.2 Constrained Lending/Borrowing
+The above point (capital inefficiency) applies in a similar manner to lending/borrowing protocols. This is perhaps even more impactful, since credit/debt markets are usually the largest market(s) in a mature economy. Many lending/borrowing protocols on Cardano employ pooled liquidity architectures, which necessitates the constraining of loan terms, thereby limiting lenders' flexibility to issue loans as they best see fit. In many cases this also means assets must go through some kind of centralized or DAO-based "approval" process before they can be lent/borrowed. Furthermore, such protocols' parameters are usually governed via their "utility" tokens, which makes them more akin to a "collective bank", rather than a "decentralized protocol". All of these restrictions inhibit the efficient price discovery of lending/borrowing protocols, which limits DeFi's ability to challenge the status quo. If as an industry we aspire to build better systems than those that came before, then credit/debt markets must be driven bottom-up by individuals, not top-down by few entities. This requires giving individuals maximum freedom in negotiating loan terms: asset(s), interest rates, collateralization, risk assessment, e.t.c., must all be left to end-users.
 
 Semantics aside, the point is that **collectively-managed lending/borrowing protocols are not an issue in and of themselves, but they cannot be the *only* option in a robust economy.**
 
-### 3.5 - Questionable Sustainability
+#### 3.5 - Questionable Sustainability
 Sustainability is key to the viability of an alternative financial system. Many DeFi protocols have an associated "utility" token, which carries heavy implications for the sustainability of the protocol. Below are discussions of a few areas where such tokens' sustainability is questionable, at best.
 
-#### Yield Farming
+##### Yield Farming
 Many DeFi protocols incentivize liquidity via "yield-farming", where inventory (or liquidation/collateralization) risk is compensated with a protocol-specific "utility" token. The issue is that **if inventory risk is being compensated by the utility token, then the liquidity (and thus the viability) of the protocol is heavily dependent on the value of the token**. This begs the question: how sustainable is the price of the utility token? The answer depends on the token's function - what does it actually do, beyond incentivizing liquidity? 
 
 Firstly, initial liquidity is often catalyzed by an aggressive emission schedule (rapidly inflates supply & decreases its value), which is obviously unsustainable. This is justified as a "bootstrapping" phase, followed by some notion of a path towards sustainable value generation - usually in the form of profit sharing with the protocol's market makers. This means the protocol itself must somehow turn a profit that backs its own token, which is problematic for a number of reasons:
@@ -116,7 +136,7 @@ Firstly, initial liquidity is often catalyzed by an aggressive emission schedule
 
 Hence, we are left with a situation where users have no choice but to use protocols whose viability depends not on technical merit alone, but on the value of the corresponding token. And since the parameters of such protocols (especially those to do with liquidity) are collectively managed, users' financial expressivity is limited, which impedes market efficiency. As soon as a more efficient protocol comes along, the value of the utility tokens plummets, causing a liquidity crisis. On these grounds it is worth questioning whether the term "protocol" is even applicable to such platforms, given how tightly coupled they often are with a specific team or product. To be clear, such "collective" market makers / banks / funds are not an issue in and of themselves, but they cannot be the *only* option in a robust DeFi economy.
 
-#### Governance Risk
+##### Governance Risk
 Protocols that opt for token/plutocratic-based governance are subject to a pandora's box of concerns, especially when "enshrined" actors (oracles, batchers e.t.c.) are involved. Present difficulties/debates over Cardano's governance are a testament to how hard this problem is. Governance is a complex topic beyond the scope of this document, so, for the sake of brevity, consider the following two points:
 
 1. Who decides who gets to be a batcher or oracle, and how are they compensated?
@@ -124,20 +144,17 @@ Protocols that opt for token/plutocratic-based governance are subject to a pando
 
 To be clear, good governance is not impossible, but increases in difficulty proportional to the width of a protocol's scope. The scope of something like DeFi (the basis of an alternative financial system) is so wide and the attack vector is so large that governance should be minimized, wherever possible. Hence, there is a need for agreed upon standards in the DeFi space, at least within the L1 context. This way, users have full control over which contracts to trust/use, eliminating the need for on-chain governance altogether.
 
-#### Regulatory Concerns
+##### Regulatory Concerns
 Protocol-specific "utility" tokens impose high regulatory burdens or uncertainties to users and developers, particularly with regard to securities laws. As mentioned in the previous section, the value of the token is usually tightly coupled with a single team or product, which can easily illicit action from regulators. In fact, this may be a good litmus test for distinguishing "products" from "protocols". The former's dependence on one or few entities is already problematic from the perspective of resiliency/availability, let alone regulatory scrutiny. If we aspire to build a truly egalitarian economy, great care must be taken to ensure agnosticism and neutrality of the *core* protocols. In the words of Erik Voorhees, "If you are actually a DeFi platform, 'jurisdiction' is a meaningless concept."
 
-### Domain-Specific Scaling
 
-### Towards Common DeFi Standards
-
-## 4 - A Return to First Principles
+### A Return to First Principles
 Astute readers will have noticed a pattern in the previous section; each subsection's critique centers around one or both of the following two points:
 
 1. Pooled liquidity architectures
 2. Enshrined off-chain entities
 
-We've arrived at the crux of the matter: **DeFi protocols, in their current form, are overly siloed in scope.** Be it the enshrinement of oracles/batchers, or the concentration of liquidity into pooled form, DeFi users are locked into the limited on-and-off-chain stack of their preferred protocol(s),
+We've arrived at the crux of the matter: **DeFi protocols, in their current form, are overly siloed in scope.** Be it the enshrinement of oracles/batchers, or the concentration of liquidity into pooled form, DeFi users are locked into the limited on-and-off-chain stack of their preferred protocol(s), which limits the robustness of the DeFi as a whole. 
 
 ---
 WIP
@@ -170,7 +187,7 @@ Cardano's eUTxO model is
 Existing DeFi providers have a headstart in this department, and are already in a great position to evolve into such services.
 
 ----
-## 5 - A Family of Protocols
+## 5. Solution: A Family of DeFi Primitives
 We advocate for an industry-wide move towards standardized DeFi contracts, used by most or all DeFi service providers. The intention is not to standardize *all* parts of a product's on-chain code, but enough of it so as to avoid the pitfalls of Section 3, without sacrificing the flexibility of products, as mentioned in section 4. To this end, we introduce a family of fully composable P2P protocols that possess all functionalities of a full DeFi stack.
 
 ### 5.1 The Four Protocols
@@ -237,7 +254,6 @@ User-friendly frontends are critical for adoption. Thanks to the fully open sour
 ### Minimal Governance
 P2P-DeFi protocols have no "utility token", and thus no "enshrined" on-chain management; they are accessible by, and belong to, anyone using the Cardano blockchain. Their maintenance ultimately rests on the shoulders of the community, so the process of agreeing on canonical contracts must be sorted out. This can be done via a combination of on-chain standards (i.e. trustless script sharing via [Cardano-Reference-Scripts](https://github.com/fallen-icarus/cardano-reference-scripts)) and off-chain outreach (i.e. Twitter/Discord discussions).
 
----
 ### State Channel & zk Accelerators - WIP
 It may be possible to achieve much higher throughput using clever combinations of state channel and/or zero-knowledge tech. The Hydra Protocol Family is promising in this regard, though it is too early in development to have a clear picture of *exactly* how. 
 Although this is a nuanced topic (beyond the scope of this document), there are many promising avenues to explore here.
@@ -246,28 +262,8 @@ Firstly, there may be a large number of domain-specific contexts where trust ass
 
 More exotic schemes with heavy use of zero knowledge techniques may allow non-custodial execution in an asynchronous setting. This was hinted at via the term "Hydra Tail", though this is entering speculative territory.  
 
-----
-
-likely not enough in its current iteration 
-
-Although its current iteration (The Head Protocol) is likely insufficient for these purposes, future developments hold promise 
-
-Although this is beyond the scope of this document, such schemes are not outside the realm of possibility, especially in domain-specific contexts where trust assumptions can be relaxed. 
-
-I
-
-### Beyond DeFi (WIP)
-- Discuss the protocols' potential to bridge the gap between DeFi and TradFi
-- DeFi as the anchor (like FedWire), TradFi as regulated end user apps (like banking)
-- maybe put this in section 4
-
-## Conclusion - WIP
-To some, this document may come off as self-aggrandizing and dismissive of existing DeFi platforms. Nothing could be further from the truth. Our intention is for this document to serve as a rallying cry for the community - *especially* for existing DeFi providers. They already have a headstart in terms of brand recognition and liquidity, and will benefit themselves *and* their users by incorporating these principles into their stacks.
-
-
-Cardano would not be where it is without them, and needs them to keep evolving and pushing forward. 
-
----
+## Conclusion
+To some, this document may come off as self-aggrandizing and dismissive of existing DeFi platforms. Nothing could be further from the truth. Our intention is for this document to serve as a rallying cry for the community - *especially* for existing DeFi providers. They already have a headstart in terms of brand recognition and liquidity, and will benefit themselves *and* their users by incorporating these principles into their stacks. Cardano would not be where it is without them, and needs them to keep evolving and pushing forward. As mentioned many times throughout this document, existing DeFi platforms with utility tokens, enshrined actors, and pooled architectures are not issues in and of themselves, but they cannot be the *only* option in a robust economy. 
 
 ## Supporting Development
 Much like the Hydra Protocol family, this project belongs to the community, so the best way to support its development is with your time. Spread the word on social channels, contribute to Github discussions/PRs, and seek understanding. The ideas here are just as much philosophical as they are technical, so lots of community discussions is the best way to capture the attention of developers. The more attention these ideas receive from developers, the faster they will be iterated upon and incorporated into the DeFi ecosystem.
