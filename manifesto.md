@@ -49,15 +49,10 @@ In seeking an alternative to the (declining) status quo, we must be careful and 
 #### System-agnostic Principles
 The most basic building block of any free economy is *voluntary and expressive* trade between *two* parties. All other parties (brokers, enforcement agencies, margin trading, credit cards, e.t.c.) is peripheral infrastructure built *atop* the basics. Critically, peer-to-peer trades do not *depend* on the will of anyone besides that of the two parties involved, though additional parties *can* be involved, where and when desired. If the two parties had full custody of their assets, but had *no option* to exchange without a middleman, this would not be a free economy. 
 
+From these basic axioms we can derive some essential properties that a free economy must have. We've established that money systems are really just price-information networks, where prices are the value-differences of individuals. To be an effective money, its network must continuously transmit these value-differences as reliably and as accurately as possible. 
 
-From these basic axioms we can derive some essential properties that a free economy must have. 
-
-
-Recall that money is really just an information system, and an information system is only as effective as it is *reliable and expressive.* 
-
-
-
-We've established that money systems are really just price-information networks, where prices are the value-differences of individuals. To be an effective money, its network must continuously transmit these value-differences as reliably and as accurately as possible. 
+#### The Rise of Blockchain
+Distributed ledger technologies have, for the first time ever, illuminated a path towards systems that handle value-information far more reliably and accurately than central administrators ever could. Much like any new and promising technology, a great deal of initial trial and error must occur to iron out the details for sustainable growth/adoption. The industry is indeed still in such early phases, having thus produced a myriad of protocols attempting to "crack the code" of global finance. It is worth exploring where these protocols fall short, and how they can be improved upon. 
 
 
 ## 3. Motivation: Limitations of DeFi
