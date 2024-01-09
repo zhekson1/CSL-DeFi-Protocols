@@ -52,7 +52,7 @@ The most basic building block of any free economy is *voluntary and expressive* 
 ##### Resilience = Availability + Sustainability
 Above all else, value-information networks must be reliable and resilient against disruption. This is necessary to outcompete the incumbent system (by being the preferred choice for most users) while simultaneously thwarting disruption by that same incumbency (who are incentivized to do so). This imposes two constraints/requirements/considerations for the system:
 
-1. **Availability** - the system must guarantee continuous read and write access to its users, lest it fails to allocate resources according to the ever-changing reality of value-differences. Such strong guarantees need not apply to *every* piece of the stack (i.e. peripheral infrastructure), but it must apply to the parts of the stack that are critical for continuous global operation. For example, its ok for some instances of a web-hosted frontend to go down, as this does not stop core functionality. However, it is *not* ok for any piece of infrastructure that affects core functionality for all users to ever go down. 
+1. **Availability** - the system must guarantee continuous read and write access to its users, lest it fails to allocate resources according to the ever-changing reality of value-differences. Such strong guarantees need not apply to *every* piece of the stack (i.e. peripheral infrastructure), but it must apply to the parts of the stack that are critical for continuous global operation. For example, its ok for some instances of a web-hosted frontend to go down, as this does not stop core functionality. However, it is *not* ok for any piece of infrastructure that affects core functionality (for all users) to ever be rendered inaccessible.
 
 2. **Sustainability** - the core of the system must not be overly reliant on any one particular group/entity for administration and maintenance, as this would be a central point of decay/failure. This necessitates the use of open protocols wherever possible, as well as sound long-term incentive structures. Again, this need not apply for all parts of the stack (i.e. a particular frontend, market maker, e.t.c.), but it *must* apply at the foundational level. For example, its ok if some frontends are proprietary/closed-source, but any piece of infrastructure that affects core functionality for all users must be free and open source.
   
@@ -63,7 +63,13 @@ It is imperative that value-information are able to capture individual sentiment
 An effective value-information network must be scalable to billions of users, but never at the expense of resiliency and expressivity.  This is a subtle but critical point, as there there is a fundamental tension between resiliency and raw speed. Since the most critical parts of the system must never sacrifice resiliency, their is an upper limit on their speed of progression. Therefore, much of the system's throughput must be offloaded from the core infrastructure onto peripheral subsystems. A delicate balance must be struck here; these subsystems must be "pluggable" into the core permissionlessly, and they must be diverse and competitive in nature. At the same time they must maintain an adequate level of interoperability, lest they themselves evolve into critical infrastructure. Here is the key subtlety: an ecosystem of such subsystems *is itself* critical infrastructure, whose resiliency comes from permissionless competition. However, any one particular subsystem cannot take on so much responsibility as to become globally critical. For example, its ok if a single proprietary platform processes the majority of finance at any given moment, as long as other platforms can quickly pick up the slack if the big fish suddenly fails. All of this necessitates that the larger (global) system lends itself towards parallelized and/or asynchronous processing on multiple subsystems.
 
 #### The Rise of Blockchain
-Distributed ledger technologies have, for the first time ever, illuminated a path towards systems that handle value-information far more reliably and accurately than central administrators ever could. Much like any new and promising technology, a great deal of initial trial and error must occur to iron out the details for sustainable growth/adoption. The industry is indeed still in such early phases, having thus produced a myriad of protocols attempting to "crack the code" of global finance. It is worth exploring how these protocols stack up against the aforementioned axioms/principles, where they fall short, and how they can be improved upon. 
+Distributed ledger technologies have, for the first time ever, illuminated a path towards systems that handle value-information far more reliably and accurately than central administrators ever could. The idea that incentives + cryptography could be aligned in such a way to produce a global root-of-trust is indeed awe-inspiring, and has attracted many talented developers to the space. Many have touted the technology's potential to extend far beyond money/finance, into the wider realm of any sensitive data having to do with identity, value, and governance. It may in fact mark the beginning of a long held techno-optimist dream: [The Semantic Web](https://en.wikipedia.org/wiki/Semantic_Web).
+
+However, order of progress matters. Much like any new and promising technology, a great deal of initial trial and error must iron out the details for sustainable growth/adoption. But what is this critical threshold, after which an explosive S-curve ensues?Consider the internet for example: at first, it was nothing more than a few computers that could message each other very cheaply, almost instantly. Thus, "instant messaging" or "chatting" (soon to be Email) became the first "killer app" of the early internet. Although in retrospect, this was more than just happenstance. Instant messaging and other text-based communications not only inspired future developers, but also democratized access/education to the very tools needed to build. It was this virtuous alignment that enabled the internet's rapid growth over the last few decades. 
+
+Similarly, the killer app of blockchains appears to be finance, and this too is more than just happenstance. At its core, a public blockchain's viability relies on a strong alignment of incentives. The viability of a *global* blockchain therefore relies on a strong global alignment of incentives. And what could be a stronger aligner of incentives than a globally diverse set of competing and cooperating economic interests? Of course this is a very broad statement and the devil is in the details. Nonetheless, it is safe to say that generally speaking, the most straightforward way to achieve incentive-alignment is through a system capable of reliably expressing the convergence of diverse value-differences. In other words, mutually assured economics. More concretely, once a majority of people can rely on a blockchain to express their needs and wants, they will fight to keep it. Therefore, robust DeFi is not only necessary for improving the global economy, but its success feeds into the success of the blockchain industry as a whole.
+
+That being said, the industry is still in the early phases of its S-curve, having produced a myriad of protocols that have yet to "crack the code" of global finance. It is worth exploring how these protocols stack up against the aforementioned axioms/principles, where they fall short, and how they can be improved upon. 
 
 ## 3. Motivation: Limitations of DeFi
 Although DeFi has great potential to improve the global economy, the blockchain industry as a whole is in its early stages and is undergoing rapid development. "There are no solutions, only trade-offs" is a quote by Thomas Sowell that could not be more applicable to the current state of affairs in the industry. It applies to L1 blockchains *and* to competing DeFi protocols within a particular blockchain network. It is therefore imperative to examine these tradeoffs as they relate to the principles outlined in the previous sections. By conducting this examination in order from L1 -> DeFi protocol, we can quickly narrow down on a set of design patterns that best instantiate these principles.
@@ -77,7 +83,21 @@ Recall from the previous section that an effective money system is nothing more 
 These are foundational questions that dictate the trajectory of any protocol built atop a blockchain, and so are worth exploring further.
 
 #### Reliability
-Reliability is a key aspect of an effectiveness of a money system. It can be thought of as the properties that guarantee users continuous or *uninterruptible* read and write access to the system (or in this case, to the blockchain). Recall that speed/throughput is a competitive advantage for a money system, as long as it does not sacrifice reliability. Unfortunately, many L1 blockchains have chosen to go down precisely this road. 
+Reliability is a key aspect of an effectiveness of a money system. It can be thought of as the properties that guarantee users' continuous or *uninterruptible* read and write access to the system (or in this case, to the blockchain). Recall that **speed/throughput is a competitive advantage for a money system, as long as it does not sacrifice reliability.** This point is so often overlooked (especially in the DeFi/blockchain industry) that it is worth stressing repeatedly. The whole point of a money system is to propagate individual value-differences, which (in aggregate) have a very high impact on the flourishing of society. Any (large scale) disruption to such a system, even for a short time, would have catastrophic consequences. If a new money system is to ever outcompete the status quo, it *must* prioritize reliability above all else, as the bar is already quite high, and no society will accept a money system that is *less* reliable than the one they already have. Unfortunately, many L1 blockchains have chosen to sacrifice reliability guarantees in pursuit of higher speed/throughput. Below is a non-exhaustive discussion of some such design choices and why they are inadequate for a robust DeFi economy. 
+
+----
+WIP
+##### BFT Consensus
+Some L1 blockchains are designed to capture all traffic on a single replicated ledger. 
+
+
+The most prominent example of this is the Solana blockchain. 
+
+
+##### "Horizontal" Scaling
+A better approach to achieving scale is 
+
+have chosen to go down precisely this road. 
 
 Solana is one such example; best in class speed for a single-shard blockchain, at the cost of a formal consensus argument. 
 
@@ -102,6 +122,27 @@ In the context of blockchains, this naturally leads to two
 Accounts cannot maintain expressivity 
 
 honesty: between accounts vs utxo latter is better
+
+
+
+### Why Cardano?
+
+### On Throughput & Scalability (WIP)
+Cardano L1 is a "Nakamoto" style blockchain, meaning it formally prioritizes liveness over consistency. In other words, at any point in time all nodes are *not* expected to have the same view of the latest state, but are guaranteed to *eventually* converge on the same view. This imposes a fundamental "speed limit" on the network (even with future L1 scaling techniques like Input Endorsers). Consequently, although Cardano L1 *can* handle fully P2P DeFi, we cannot expect it to do so for billions of users simultaneously. So how do we get these protocols to scale? The answer lies in the kinds of "abstractions" and/or third-party services that can be built atop these protocols. To illustrate by analogy, lets examine the traditional financial system:
+
+At the highest level, there are domestic and international money transfers standards (i.e. FedWire and SWIFT, respectively). Individuals can send money directly using these standards (albeit through a bank intermediary), but this is relatively slow and expensive. There are alternative services that lower fees by batching transactions (i.e. ACH), or accelerate the process by taking on counterparty risk (i.e. CashApp, Venmo, credit cards, e.t.c.). None of these services are *strictly* necessary for any one individual to transfer money, but they enable a level of scale that the higher level protocols could not achieve on their own. 
+
+Things seem to be playing out in a similar fashion for the cryptocurrency industry. There is a broad recognition that decentralization implies limits to the speed at which individuals can transact directly. Some blockchains choose to forgo decentralization altogether, but leaving those aside, there is obviously a need for alternative scaling services built atop the core systems. Bitcoin's Lighting Network and Ethereum's ecosystem of L2s/rollups are prime exemplars. And so the motif is echoed once more: how can we architect systems than enable a wide scope of such services, without fracturing liquidity and preserving interoperability?
+
+Cardano's eUTxO model is 
+
+
+
+Existing DeFi providers have a headstart in this department, and are already in a great position to evolve into such services.
+
+WIP
+
+----
 
 
 ### Limitations of Cardano-based DeFi
@@ -165,15 +206,13 @@ Astute readers will have noticed a pattern in the previous section; each subsect
 
 We've arrived at the crux of the matter: **DeFi protocols, in their current form, are overly siloed in scope.** Be it the enshrinement of oracles/batchers, or the concentration of liquidity into pooled form, DeFi users are locked into the limited on-and-off-chain stack of their preferred protocol(s), which limits the robustness of the DeFi as a whole. 
 
----
+
+----
 WIP
 ### A Separation of Concerns (WIP)
 There's a reason why the internet seems like magic for regular users (and even some developers!). From compilers, to TCP/IP, to HTTPS, to the app; a huge number of standards sit at multiple layers between the machine and the app; expediting development while preserving interoperability. A useful analogy is that of a tree: its roots are to machine code what its leaves are to apps; standards give structure and rigidity to its trunk. This *separation of concerns* lets innovators and entrepreneurs shine, unburdened by the nitty-gritty details relegated to the low-level engineers. 
 
 Blockchains are a similar beast - as the technology matures, the number of possible applications (even within one vertical, like DeFi) explodes. Currently, every DeFi provider architects an entire stack, from smart contracts to the frontend, each of which is siloed and lacks interoperability with others. 
-
-
-
 
 Layers upon layers of protocols abstract away all the low-level nonsense from higher-level developers and end-users alike. 
 
@@ -181,21 +220,10 @@ the distance between the on-chain backend and the end-user app widens,
 
 What if instead of 
 
-
-### On Throughput & Scalability (WIP)
-Cardano L1 is a "Nakamoto" style blockchain, meaning it formally prioritizes liveness over consistency. In other words, at any point in time all nodes are *not* expected to have the same view of the latest state, but are guaranteed to *eventually* converge on the same view. This imposes a fundamental "speed limit" on the network (even with future L1 scaling techniques like Input Endorsers). Consequently, although Cardano L1 *can* handle fully P2P DeFi, we cannot expect it to do so for billions of users simultaneously. So how do we get these protocols to scale? The answer lies in the kinds of "abstractions" and/or third-party services that can be built atop these protocols. To illustrate by analogy, lets examine the traditional financial system:
-
-At the highest level, there are domestic and international money transfers standards (i.e. FedWire and SWIFT, respectively). Individuals can send money directly using these standards (albeit through a bank intermediary), but this is relatively slow and expensive. There are alternative services that lower fees by batching transactions (i.e. ACH), or accelerate the process by taking on counterparty risk (i.e. CashApp, Venmo, credit cards, e.t.c.). None of these services are *strictly* necessary for any one individual to transfer money, but they enable a level of scale that the higher level protocols could not achieve on their own. 
-
-Things seem to be playing out in a similar fashion for the cryptocurrency industry. There is a broad recognition that decentralization implies limits to the speed at which individuals can transact directly. Some blockchains choose to forgo decentralization altogether, but leaving those aside, there is obviously a need for alternative scaling services built atop the core systems. Bitcoin's Lighting Network and Ethereum's ecosystem of L2s/rollups are prime exemplars. And so the motif is echoed once more: how can we architect systems than enable a wide scope of such services, without fracturing liquidity and preserving interoperability?
-
-Cardano's eUTxO model is 
-
-
-
-Existing DeFi providers have a headstart in this department, and are already in a great position to evolve into such services.
+WIP
 
 ----
+
 ## 5. Solution: A Family of DeFi Primitives
 We advocate for an industry-wide move towards standardized DeFi contracts, used by most or all DeFi service providers. The intention is not to standardize *all* parts of a product's on-chain code, but enough of it so as to avoid the pitfalls of Section 3, without sacrificing the flexibility of products, as mentioned in section 4. To this end, we introduce a family of fully composable P2P protocols that possess all functionalities of a full DeFi stack.
 
